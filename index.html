@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Математичні операції з функціями</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #333;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #6200ea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+            margin: 5px;
+            border: 2px solid #6200ea;
+            border-radius: 5px;
+        }
+        .result {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #6200ea;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Математичні операції з функціями</h1>
+        <p>Введіть два числа для обчислення результату:</p>
+
+        <div class="input-container">
+            <input type="number" id="num1" placeholder="Перше число" required>
+            <input type="number" id="num2" placeholder="Друге число" required>
+        </div>
+
+        <button class="button" onclick="showResult()">Обчислити результат</button>
+
+        <div id="result" class="result">Результат з’явиться тут</div>
+    </div>
+
+    <script>
+        "use strict";
+        function add(a, b) {
+            return a + b;
+        }
+        function subtract(a, b) {
+            return a - b;
+        }
+        function multiply(a, b) {
+            return a * b;
+        }
+        function divide(a, b) {
+            if (b === 0) {
+                return "Неможливо поділити на нуль!";
+            }
+            return a / b;
+        }
+        function calculate(a, b, operation) {
+            return operation(a, b);
+        }
+        function showResult() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").innerHTML = "Будь ласка, введіть обидва числа!";
+                return;
+            }
+            const addResult = calculate(num1, num2, add);
+            const subtractResult = calculate(num1, num2, subtract);
+            const multiplyResult = calculate(num1, num2, multiply);
+            const divideResult = calculate(num1, num2, divide);
+            document.getElementById("result").innerHTML = `
+                <p>Додавання: ${addResult}</p>
+                <p>Віднімання: ${subtractResult}</p>
+                <p>Множення: ${multiplyResult}</p>
+                <p>Ділення: ${divideResult}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
